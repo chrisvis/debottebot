@@ -1,6 +1,8 @@
 'use strict';
 var request = require('request');
 
+const token = "***REMOVED***";
+
 const GREETINGS = [
     "Wat moet je?",
     "Wat?",
@@ -46,35 +48,34 @@ function chooseResponse(text) {
   return pickRandom(GENERALREACTIONS);
 }
 
+function sendTextMessage(sender, text) {
+    let messageData = {
+        text: text
+    };
+    request({
+        url: 'https://graph.facebook.com/v2.6/me/messages',
+        qs: {
+            access_token: token
+        },
+        method: 'POST',
+        json: {
+            recipient: {
+                id: sender
+            },
+            message: messageData,
+        }
+    }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending message: ', error);
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error);
+        }
+    });
+}
+
 module.exports.handler = function(event, context, cb) {
-    var token = "***REMOVED***";
 
     console.log('Received event:', JSON.stringify(event, null, 2));
-
-    function sendTextMessage(sender, text) {
-        let messageData = {
-            text: text
-        };
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messages',
-            qs: {
-                access_token: token
-            },
-            method: 'POST',
-            json: {
-                recipient: {
-                    id: sender
-                },
-                message: messageData,
-            }
-        }, function(error, response, body) {
-            if (error) {
-                console.log('Error sending message: ', error);
-            } else if (response.body.error) {
-                console.log('Error: ', response.body.error);
-            }
-        });
-    }
 
     let messaging_events = event.entry[0].messaging;
     for (var i = 0; i < messaging_events.length; i++) {
