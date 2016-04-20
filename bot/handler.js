@@ -1,6 +1,50 @@
 'use strict';
 var request = require('request');
 
+const GREETINGS = [
+    "Wat moet je?",
+    "Wat?",
+    "He."
+];
+
+const QUESTIONANSWERS = [
+    "Gaat je niets aan.",
+    "Weet je dat zelf niet?",
+    "Wat een slechte vraag zeg."
+];
+
+const GENERALREACTIONS = [
+    "Boeiend.",
+    "Saai verhaal.",
+    "Ik luister niet hoor."
+];
+
+function isGreeting(text) {
+  let normalized = text.toLowerCase();
+
+  return (
+    normalized.indexOf('hoi') !== -1 ||
+    normalized.indexOf('hallo') !== -1 ||
+    normalized.indexOf('hi') !== -1
+  );
+}
+
+function isQuestion(text) {
+  return text.indexOf('?') !== -1;
+}
+
+function pickRandom(array) {
+  return array[ Math.floor( Math.random() * array.length ) ];
+}
+
+function chooseResponse(text) {
+  if (isGreeting(text)) {
+    return pickRandom(GREETINGS);
+  } else if (isQuestion(text)) {
+    return pickRandom(QUESTIONANSWERS);
+  }
+  return pickRandom(GENERALREACTIONS);
+}
 
 module.exports.handler = function(event, context, cb) {
     var token = "***REMOVED***";
@@ -32,33 +76,14 @@ module.exports.handler = function(event, context, cb) {
         });
     }
 
-    var greetings = [
-        "Wat moet je?",
-        "Wat?",
-        "He."
-    ];
-
-    var questionAnswers = [
-        "Gaat je niets aan.",
-        "Weet je dat zelf niet?",
-        "Wat een slechte vraag zeg."
-    ];
-
-    var generalReactions = [
-        "Boeiend.",
-        "Saai verhaal.",
-        "Ik luister niet hoor."
-    ];
-
-    var messaging_events = event.entry[0].messaging;
+    let messaging_events = event.entry[0].messaging;
     for (var i = 0; i < messaging_events.length; i++) {
         let messaging_event = messaging_events[i];
         let sender = messaging_event.sender.id;
+
         if (messaging_event.message && messaging_event.message.text) {
             let text = messaging_event.message.text;
-            sendTextMessage(sender, greetings[0]);
+            sendTextMessage(sender, chooseResponse(text));
         }
     }
-
-    cb(null, greetings[0]);
 };

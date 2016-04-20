@@ -5,8 +5,24 @@
                 "id": 0
             },
             "message": {
-                "text": "Hoi"
+                "text": "Hallo"
             }
-        }]
+        },{
+            "sender": {
+                "id": 1
+            },
+            "message": {
+                "text": "Echt?"
+            }
+        },
+        {
+            "sender": {
+                "id": 2
+            },
+            "message": {
+                "text": "bla"
+            }
+        }
+      ]
     }]
 }
