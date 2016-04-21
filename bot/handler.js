@@ -1,4 +1,5 @@
 'use strict';
+
 var request = require('request');
 
 const token = process.env.PAGE_TOKEN;
@@ -6,19 +7,35 @@ const token = process.env.PAGE_TOKEN;
 const GREETINGS = [
     "Wat moet je?",
     "Wat?",
-    "He."
+    "He.",
+    "Ja?"
 ];
 
-const QUESTIONANSWERS = [
+const QUESTION_ANSWERS = [
     "Gaat je niets aan.",
     "Weet je dat zelf niet?",
-    "Wat een slechte vraag zeg."
+    "Wat een slechte vraag zeg.",
+    "Ben je dom ofzo?",
+    "Pfff. Hier: http://lmgtfy.com/?q={text_urlencoded}",
+    "Ik kom er zo even op terug, ik moet nu eerst even kakken. :poop:"
 ];
 
-const GENERALREACTIONS = [
+const GENERAL_REACTIONS = [
     "Boeiend.",
     "Saai verhaal.",
-    "Ik luister niet hoor."
+    "Ik luister niet hoor.",
+    "Ben je klaar?",
+    "Booorrring.",
+    "Zzzzz.",
+    "Meen je dat nou echt?",
+    "Interessant...",
+    "O.",
+    "Tja.",
+    "Jaja.",
+    ":poop:",
+    "o.O",
+    ":|]",
+    ":/"
 ];
 
 function isGreeting(text) {
@@ -27,7 +44,8 @@ function isGreeting(text) {
   return (
     normalized.indexOf('hoi') !== -1 ||
     normalized.indexOf('hallo') !== -1 ||
-    normalized.indexOf('hi') !== -1
+    normalized.indexOf('hi') !== -1 ||
+    normalized.indexOf('hello') !== -1
   );
 }
 
@@ -43,9 +61,9 @@ function chooseResponse(text) {
   if (isGreeting(text)) {
     return pickRandom(GREETINGS);
   } else if (isQuestion(text)) {
-    return pickRandom(QUESTIONANSWERS);
+    return pickRandom(QUESTION_ANSWERS);
   }
-  return pickRandom(GENERALREACTIONS);
+  return pickRandom(GENERAL_REACTIONS);
 }
 
 function sendTextMessage(sender, text) {
@@ -84,7 +102,7 @@ module.exports.handler = function(event, context, cb) {
 
         if (messaging_event.message && messaging_event.message.text) {
             let text = messaging_event.message.text;
-            sendTextMessage(sender, chooseResponse(text));
+            sendTextMessage(sender, chooseResponse(text).replace("{text_urlencoded}", encodeURIComponent(text)));
         }
     }
 };
