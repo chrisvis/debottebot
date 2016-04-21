@@ -1,7 +1,7 @@
 'use strict';
 var request = require('request');
 
-const token = "***REMOVED***";
+const token = process.env.PAGE_TOKEN;
 
 const GREETINGS = [
     "Wat moet je?",

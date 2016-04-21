@@ -1,4 +1,4 @@
 {
-  "hub.verify_token": "***REMOVED***",
+  "hub.verify_token": "geheim_tokentje",
   "hub.challenge": "HUB.CHALLENGE"
 }

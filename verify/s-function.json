@@ -42,7 +42,8 @@
   "environment": {
     "SERVERLESS_PROJECT": "${project}",
     "SERVERLESS_STAGE": "${stage}",
-    "SERVERLESS_REGION": "${region}"
+    "SERVERLESS_REGION": "${region}",
+    "VERIFY_TOKEN": "${verifyToken}"
   },
   "vpc": {
     "securityGroupIds": [],

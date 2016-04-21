@@ -1,8 +1,8 @@
 'use strict';
 
-module.exports.handler = function(event, context, cb) {
-    var token = 'tokentje';
+const token = process.env.VERIFY_TOKEN;
 
+module.exports.handler = function(event, context, cb) {
     console.log('Received event:', JSON.stringify(event, null, 2));
 
     if (event['hub.verify_token'] === token) {
