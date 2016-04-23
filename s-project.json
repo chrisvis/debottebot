@@ -1,5 +1,8 @@
 {
-  "name": "labottebot",
-  "custom": {},
-  "plugins": []
+    "name": "labottebot",
+    "custom": {},
+    "plugins": [
+        "serverless-offline",
+        "serverless-optimizer-plugin"
+    ]
 }

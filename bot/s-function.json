@@ -4,12 +4,24 @@
   "description": "Serverless Lambda function for project: labottebot",
   "customName": false,
   "customRole": false,
-  "handler": "handler.handler",
+  "handler": "bot/handler.handler",
   "timeout": 6,
   "memorySize": 1024,
   "authorizer": {},
   "custom": {
-    "excludePatterns": []
+    "excludePatterns": [],
+    "optimize": {
+      "transforms": [
+        {
+          "name": "babelify",
+          "opts": {
+              "presets": [
+                  "es2015"
+              ]
+          }
+      }
+    ]
+  }
   },
   "endpoints": [
     {
