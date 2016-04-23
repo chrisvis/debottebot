@@ -1,7 +1,7 @@
 {
   "name": "bot",
   "runtime": "nodejs4.3",
-  "description": "Serverless Lambda function for project: labottebot",
+  "description": "Serverless Lambda function that handles the messages of the bot",
   "customName": false,
   "customRole": false,
   "handler": "bot/handler.handler",

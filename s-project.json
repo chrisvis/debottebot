@@ -1,5 +1,5 @@
 {
-    "name": "labottebot",
+    "name": "debottebot",
     "custom": {},
     "plugins": [
         "serverless-offline",

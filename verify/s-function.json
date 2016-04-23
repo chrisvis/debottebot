@@ -1,7 +1,7 @@
 {
   "name": "verify",
   "runtime": "nodejs4.3",
-  "description": "Serverless Lambda function for project: labottebot",
+  "description": "Serverless Lambda function for verifying the bot at Facebook",
   "customName": false,
   "customRole": false,
   "handler": "verify/handler.handler",
