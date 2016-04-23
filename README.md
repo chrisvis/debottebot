@@ -21,6 +21,7 @@ npm install serverless -g
 Now `cd` into the clone of this repository and run:
 
 ```
+npm install
 serverless project init
 ```
 
@@ -29,6 +30,9 @@ There you need to set two variables:
 
 - `verifyToken` needed for verifying the Facebook App Webhook 
 - `pageToken` used as `access_token` for calls back to the Facebook API.
+
+The `pageToken` is acquired when setting up the [Facebook Page and Facebook App](https://developers.facebook.com/docs/messenger-platform/quickstart).
+
 
 ##Todo
 - Add unit tests
