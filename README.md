@@ -10,7 +10,7 @@
 
 De Botte Bot is a Dutch speaking Facebook Messenger chat bot who is acting *bot*, which is a Dutch word meaning something like *rude*. He lives on Facebook at <https://fb.com/debottebot>.
 
-*Unfortunately Facebook has not approved the bot and it doesn't seem to be happening any time soon, therefor the bot doesn't respond when you are not talk to him when unless I add you as a tester for the Facebook app.*
+*Unfortunately Facebook has not approved the bot and it doesn't seem to be happening any time soon, therefor the bot doesn't respond when you are talk to him when unless I add you as a tester for the Facebook app.*
 
 ## Installation
 This project is built using the [Serverless Framework](https://github.com/serverless/serverless).
@@ -37,7 +37,7 @@ The `pageToken` is acquired when setting up the [Facebook Page and Facebook App]
 
 
 ##Todo
-- Add unit tests
+- Add more tests
 - Setup linting
 - Make him "smarter"
 - ???
